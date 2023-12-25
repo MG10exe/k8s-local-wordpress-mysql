@@ -43,7 +43,7 @@ Instalar, usando o charts Helm, duas aplicações: wordpress e mysql, no namespa
     ```
 6. Verifique o ip do pod do Mysql usando:
     ```bash
-    kubectl describe pod `nome-do-pode^` -n virtualizacao
+    kubectl describe pod `^nome-do-pode^` -n virtualizacao
     ```   
 
 ### Testes
