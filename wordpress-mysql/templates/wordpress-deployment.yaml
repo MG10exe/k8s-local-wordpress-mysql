@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: {{ .Values.Wordpress.deployment.creationTimestamp }}
+  name: {{ .Values.Wordpress.deployment.name }}
+  labels:
+    {{ .Values.Wordpress.labels | toYaml | nindent 4 }}
+spec:
+  replicas: {{ .Values.Wordpress.deployment.replicas }}
+  selector:
+    matchLabels:
+      {{ .Values.Wordpress.labels | toYaml | nindent 6 }}
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: {{ .Values.Wordpress.deployment.template.metadata.creationTimestamp }}
+      labels:
+        {{ .Values.Wordpress.labels | toYaml | nindent 8 }}
+    spec:
+      containers:
+      - image: {{ .Values.Wordpress.deployment.template.spec.containers.image }}
+        name: {{ .Values.Wordpress.deployment.template.spec.containers.name }}
+        resources: {}
+      dnsPolicy: {{ .Values.Wordpress.deployment.template.spec.dnsPolicy }}
+      restartPolicy: {{ .Values.Wordpress.deployment.template.spec.restartPolicy }}
+status: {}

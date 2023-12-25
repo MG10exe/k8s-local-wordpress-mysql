@@ -1,0 +1,4 @@
+apiVersion: v2
+name: k8s-local-wordpress-mysql
+version: 0.1.0
+description: Chart for wordpress and mysql

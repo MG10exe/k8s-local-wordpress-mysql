@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: mysql
+  name: mysql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: mysql
+    spec:
+      containers:
+      - env: {{- toYaml .Values.Mysql.deployment.spec.containers.env | nindent 12 }}
+        image: {{ .Values.Mysql.deployment.spec.containers.image }}
+        name: {{ .Values.Mysql.deployment.spec.containers.name }}
+        resources: {}
+      dnsPolicy: {{ .Values.Mysql.deployment.spec.dnsPolicy }}
+      restartPolicy: {{ .Values.Mysql.deployment.spec.restartPolicy }}
+status: {}

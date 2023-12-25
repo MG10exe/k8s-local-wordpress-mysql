@@ -1,0 +1,20 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: {{ .Values.Wordpress.service.creationTimestamp }}
+  name: {{ .Values.Wordpress.service.name }}
+  labels:
+    {{ .Values.Wordpress.labels | toYaml | nindent 4 }} 
+spec:
+  type: {{ .Values.Wordpress.service.type }}
+  ports:
+  - port: {{ .Values.Wordpress.service.ports.port }}
+    protocol: {{ .Values.Wordpress.service.ports.protocol }}
+    targetPort: {{ .Values.Wordpress.service.ports.targetPort }}
+    nodePort: {{ .Values.Wordpress.service.ports.nodePort }}
+  selector:
+    {{ .Values.Wordpress.labels | toYaml | nindent 4 }}
+  
+status:
+loadBalancer: {}

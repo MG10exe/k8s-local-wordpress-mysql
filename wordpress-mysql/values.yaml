@@ -1,0 +1,46 @@
+Wordpress:
+  labels:
+    app: wordpress
+
+  deployment:
+    creationTimestamp: null
+    name: wordpress
+    replicas: 1
+
+    template:
+      metadata:
+        creationTimestamp: null
+      spec:
+        containers:
+          image: wordpress:5.1.1-php7.3-apache
+          name: wordpress
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+
+  service:
+    creationTimestamp: null
+    name: wordpress
+    type: NodePort
+    ports:
+      port: 80
+      protocol: TCP
+      targetPort: 80
+      nodePort: 30355
+
+Mysql:
+  deployment:
+    spec:
+      containers:
+        env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: ifpb
+            - name: MYSQL_DATABASE
+              value: wpdb
+            - name: MYSQL_USER
+              value: matheusgomes
+            - name: MYSQL_PASSWORD
+              value: ifpb
+        image: mysql:5.7
+        name: mysql
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
